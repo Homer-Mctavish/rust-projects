@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+    "cratetorrent-cli",
+    "cratetorrent",
+]
