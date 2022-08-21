@@ -1,12 +1,12 @@
 
-name: Basic function pipeline
+name: Lambda function pipeline
 
 on:
   push:
     branches: [ master ]
     paths:
-        - 'basic-function/**'
-        - '.github/workflows/basic-function-pipeline.yml'
+        - 'lambda-function/**'
+        - '.github/workflows/lambda-function-pipeline.yml'
 
 env:
   CARGO_TERM_COLOR: always
@@ -27,7 +27,7 @@ steps:
       run: cargo build --release --target x86_64-unknown-linux-musl
     - name: Create .zip file
       run: |
-        cp target/x86_64-unknown-linux-musl/release/basic-function bootstrap
+        cp target/x86_64-unknown-linux-musl/release/lambda-function bootstrap
         zip lambda.zip bootstrap
         
         - name: Configure AWS Credentials  
@@ -38,4 +38,4 @@ steps:
         aws-region: eu-west-1
     - name: deploy
       run: |
-          aws lambda update-function-code --function-name=basic-function --zip-file=fileb://lambda.zip
+          aws lambda update-function-code --function-name=lambda-function --zip-file=fileb://lambda.zip
