@@ -1,0 +1,54 @@
+cargo:rustc-cfg=const_fn
+cargo:rerun-if-env-changed=X86_64_UNKNOWN_LINUX_MUSL_OPENSSL_LIB_DIR
+X86_64_UNKNOWN_LINUX_MUSL_OPENSSL_LIB_DIR unset
+cargo:rerun-if-env-changed=OPENSSL_LIB_DIR
+OPENSSL_LIB_DIR unset
+cargo:rerun-if-env-changed=X86_64_UNKNOWN_LINUX_MUSL_OPENSSL_INCLUDE_DIR
+X86_64_UNKNOWN_LINUX_MUSL_OPENSSL_INCLUDE_DIR unset
+cargo:rerun-if-env-changed=OPENSSL_INCLUDE_DIR
+OPENSSL_INCLUDE_DIR unset
+cargo:rerun-if-env-changed=X86_64_UNKNOWN_LINUX_MUSL_OPENSSL_DIR
+X86_64_UNKNOWN_LINUX_MUSL_OPENSSL_DIR = /usr/local/musl/
+cargo:rustc-link-search=native=/usr/local/musl/lib
+cargo:include=/usr/local/musl/include
+cargo:rerun-if-changed=build/expando.c
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-unknown-linux-musl")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-musl = None
+CC_x86_64_unknown_linux_musl = None
+TARGET_CC = None
+CC = None
+CROSS_COMPILE = None
+CFLAGS_x86_64-unknown-linux-musl = None
+CFLAGS_x86_64_unknown_linux_musl = None
+TARGET_CFLAGS = None
+CFLAGS = None
+CRATE_CC_NO_DEFAULTS = None
+DEBUG = Some("false")
+CARGO_CFG_TARGET_FEATURE = Some("fxsr,sse,sse2")
+running: "musl-gcc" "-O3" "-ffunction-sections" "-fdata-sections" "-fPIC" "-m64" "-I" "/usr/local/musl/include" "-Wall" "-Wextra" "-E" "build/expando.c"
+exit status: 0
+cargo:rustc-cfg=osslconf="OPENSSL_NO_SSL3_METHOD"
+cargo:conf=OPENSSL_NO_SSL3_METHOD
+cargo:rustc-cfg=ossl101
+cargo:rustc-cfg=ossl102
+cargo:rustc-cfg=ossl102f
+cargo:rustc-cfg=ossl102h
+cargo:rustc-cfg=ossl110
+cargo:rustc-cfg=ossl110f
+cargo:rustc-cfg=ossl110g
+cargo:rustc-cfg=ossl110h
+cargo:rustc-cfg=ossl111
+cargo:rustc-cfg=ossl111b
+cargo:rustc-cfg=ossl111c
+cargo:version_number=101010df
+cargo:version=111
+cargo:rerun-if-env-changed=X86_64_UNKNOWN_LINUX_MUSL_OPENSSL_LIBS
+X86_64_UNKNOWN_LINUX_MUSL_OPENSSL_LIBS unset
+cargo:rerun-if-env-changed=OPENSSL_LIBS
+OPENSSL_LIBS unset
+cargo:rerun-if-env-changed=X86_64_UNKNOWN_LINUX_MUSL_OPENSSL_STATIC
+X86_64_UNKNOWN_LINUX_MUSL_OPENSSL_STATIC = 1
+cargo:rustc-link-lib=static=ssl
+cargo:rustc-link-lib=static=crypto
